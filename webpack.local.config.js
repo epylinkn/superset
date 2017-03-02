@@ -39,8 +39,12 @@ module.exports = {
         test: /\.css$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+          'css-loader',
         ],
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=build/fonts/[name].[ext]'
       },
 
       // auth0 lock
@@ -66,12 +70,6 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.css'],
   },
-
-  // Additional plugins for CSS post processing using postcss-loader
-  postcss: [
-    require('autoprefixer'), // Automatically include vendor prefixes
-    require('postcss-nested'), // Enable nested rules, like in Sass
-  ],
 
   devServer: {
     host: '127.0.0.1',
