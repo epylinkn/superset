@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Relay from 'react-relay';
+import Game from './Game';
 
 class Profile extends Component {
   handleLogout = () => {
@@ -37,6 +38,8 @@ class Profile extends Component {
             Logout
           </button>
         </div>
+
+        <Game />
       </div>
     );
   }

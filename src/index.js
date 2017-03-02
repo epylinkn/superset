@@ -15,6 +15,7 @@ require("./css/style.css");
 require("./js/materialize.js");
 require("./js/init.js");
 
+
 Relay.injectNetworkLayer(Reindex.getRelayNetworkLayer());
 
 ReactDOM.render(
