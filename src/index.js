@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import jQuery from 'jquery';
 import 'hammerjs';
+import 'font-awesome-webpack';
 
 import Reindex from './Reindex';
 

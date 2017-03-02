@@ -1,7 +1,7 @@
 {
-  "name": "reindex-starter-kit",
+  "name": "superset",
   "version": "1.0.0",
-  "description": "A quickstart template for building an app with React, Relay and Reindex",
+  "description": "SUPERSET",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.local.config.js",
@@ -16,6 +16,9 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "babel-runtime": "^5.8.20",
+    "font-awesome": "^4.7.0",
+    "font-awesome-webpack": "0.0.5-beta.2",
+    "less": "^2.7.2",
     "react": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
     "react-relay": "^0.8.1",
@@ -45,6 +48,7 @@
     "react-transform-hmr": "^1.0.0",
     "redbox-react": "^1.0.1",
     "style-loader": "^0.12.4",
+    "url-loader": "^0.5.8",
     "webpack": "^1.12.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-dev-server": "^1.14.1",
