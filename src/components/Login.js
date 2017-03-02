@@ -10,25 +10,10 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to Reindex!</h1>
-        <div>
-          <button onClick={this.handleLogin.bind(this, 'google')}>
-            Login with Google
-          </button>
-        </div>
+        <h1>Welcome to superset!</h1>
         <div>
           <button onClick={this.handleLogin.bind(this, 'facebook')}>
             Login with Facebook
-          </button>
-        </div>
-        <div>
-          <button onClick={this.handleLogin.bind(this, 'github')}>
-            Login with Github
-          </button>
-        </div>
-        <div>
-          <button onClick={this.handleLogin.bind(this, 'twitter')}>
-            Login with Twitter
           </button>
         </div>
       </div>

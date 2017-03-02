@@ -10,7 +10,7 @@ class Profile extends Component {
 
   getActiveCredential() {
     const credentials = this.props.viewer.user.credentials;
-    for (const provider of ['google', 'facebook', 'twitter', 'github']) {
+    for (const provider of ['facebook']) {
       if (credentials[provider]) {
         return {
           type: provider,
@@ -49,15 +49,6 @@ export default Relay.createContainer(Profile, {
         user {
           id,
           credentials {
-            google {
-              displayName
-            },
-            twitter {
-              displayName
-            },
-            github {
-              displayName
-            },
             facebook {
               displayName
             }
