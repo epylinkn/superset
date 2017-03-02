@@ -65,7 +65,16 @@ footer.page-footer {
   background-color: LightGoldenRodYellow;
   border-radius: 10px;
 }
-
 .card i {
   display: block;
+}
+
+.card-cyan {
+  color: cyan;
+}
+.card-magenta {
+  color: magenta;
+}
+.card-yellow {
+  color: yellow;
 }
