@@ -62,12 +62,21 @@ footer.page-footer {
   text-align: center;
   padding: 20px;
   height: 300px;
-  background-color: LightGoldenRodYellow;
+  background-color: black;
   border-radius: 10px;
 }
 .card.selected {
-  border: 1px solid blueviolet;
+  border: 5px solid hotpink;
 }
+.correct .card.selected {
+  border: 7px solid lime;
+}
+.wrong .card.selected {
+  border: 7px solid crimson
+}
+
+
+
 .card i {
   display: block;
 }

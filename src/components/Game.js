@@ -11,7 +11,8 @@ class Game extends Component {
     this.state = {
       deck: _.takeRight(deck, 81-12),
       board: _.take(deck, 12),
-      selected: []
+      selected: [],
+      status: ''
     }
 
     console.log("BOARD", this.state.board);
@@ -51,16 +52,18 @@ class Game extends Component {
         </div>
 
         <div className="row">
-          {this.state.board.map((card, i) =>
-            <Card key={i}
-              id={card.id}
-              handleClickCb={this.handleClick}
-              selected={this.state.selected.indexOf(card.id) !== -1}
-              color={card.color}
-              number={card.number}
-              shape={card.shape}
-              fill={card.fill} />
-          )}
+          <div className={this.state.status}>
+            {this.state.board.map((card, i) =>
+              <Card key={i}
+                id={card.id}
+                handleClickCb={this.handleClick}
+                selected={this.state.selected.indexOf(card.id) !== -1}
+                color={card.color}
+                number={card.number}
+                shape={card.shape}
+                fill={card.fill} />
+            )}
+          </div>
         </div>
       </div>
     );
@@ -79,7 +82,7 @@ class Game extends Component {
 
   componentDidUpdate() {
     console.log(this.state.selected);
-    if (this.state.selected.length >= 3) {
+    if (this.state.status == '' && this.state.selected.length >= 3) {
       var cards = this.state.board.filter((card) => { return this.state.selected.indexOf(card.id) !== -1 });
       if (this.isValidSet(cards)) {
         console.log("yep");
@@ -92,15 +95,29 @@ class Game extends Component {
           }
         })
         this.setState({
-          selected: [],
-          board: nextBoard,
-          deck: this.state.deck.slice(3)
-        })
-      } else {
-        console.log("nope");
-        this.setState({
-          selected: [],
+          status: "correct"
         });
+
+        setTimeout(() => {
+          this.setState({
+            selected: [],
+            board: nextBoard,
+            deck: this.state.deck.slice(3),
+            status: ""
+          })
+        }, 1000)
+      } else {
+        this.setState({
+          status: "wrong"
+        });
+
+        setTimeout(() => {
+          console.log("nope");
+          this.setState({
+            selected: [],
+            status: ""
+          });
+        }, 1000)
       }
     }
   }
