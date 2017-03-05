@@ -71,7 +71,13 @@ class Game extends Component {
 
   handleClick = (id) => {
     // Don't allow selecting same card
-    if (this.state.selected.indexOf(id) !== -1) {
+    const pos = this.state.selected.indexOf(id);
+    if (pos !== -1) {
+      var selected = this.state.selected;
+      selected.splice(pos, 1);
+      this.setState({
+        selected: selected
+      })
       return false;
     }
 
