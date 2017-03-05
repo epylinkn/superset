@@ -65,6 +65,9 @@ footer.page-footer {
   background-color: LightGoldenRodYellow;
   border-radius: 10px;
 }
+.card.selected {
+  border: 1px solid blueviolet;
+}
 .card i {
   display: block;
 }

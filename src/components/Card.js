@@ -1,9 +1,30 @@
 import React, {Component} from 'react';
 import Relay from 'react-relay';
 import _ from 'lodash';
+import $ from 'jQuery';
 
 class Card extends Component {
-  iconFor(shape, fill) {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="col s3">
+        <div className={`card card-${ this.props.color } ${ this.props.selected ? "selected" : "" }`} onClick={this.handleClick}>
+          {_.times(this.props.number, (i) =>
+            <i key={i} className={`fa ${ this.iconFor(this.props.shape, this.props.fill) } fa-5x`}></i>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  handleClick = (event) => {
+    this.props.handleClickCb(this.props.id);
+  }
+
+  iconFor = (shape, fill) => {
     if (shape == "battery") {
       return {
         "empty": "fa-battery-empty",
@@ -23,21 +44,6 @@ class Card extends Component {
         "full": "fa-circle"
       }[fill];
     }
-  }
-
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={`card card-${this.props.color}`}>
-        {_.times(this.props.number, (i) =>
-          <i className={`fa ${this.iconFor(this.props.shape, this.props.fill)} fa-5x`}></i>
-        )}
-      </div>
-    );
   }
 }
 

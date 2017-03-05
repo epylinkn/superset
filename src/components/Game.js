@@ -9,8 +9,9 @@ class Game extends Component {
 
     var deck = this.createDeck();
     this.state = {
-      deck: deck,
-      board: _.sample(deck, 12)
+      deck: _.takeRight(deck, 81-12),
+      board: _.take(deck, 12),
+      selected: []
     }
 
     console.log("BOARD", this.state.board);
@@ -45,15 +46,69 @@ class Game extends Component {
   render() {
     return (
       <div className="container">
+        <div>
+          <h1 style={{textAlign: "center"}}>{this.state.deck.length} cards remaining</h1>
+        </div>
+
         <div className="row">
-          {this.state.board.map((card) =>
-            <div className="col s3">
-              <Card color={card.color} number={card.number} shape={card.shape} fill={card.fill} />
-            </div>
+          {this.state.board.map((card, i) =>
+            <Card key={i}
+              id={card.id}
+              handleClickCb={this.handleClick}
+              selected={this.state.selected.indexOf(card.id) !== -1}
+              color={card.color}
+              number={card.number}
+              shape={card.shape}
+              fill={card.fill} />
           )}
         </div>
       </div>
     );
+  }
+
+  handleClick = (id) => {
+    this.setState({
+      selected: this.state.selected.concat(id)
+    });
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.selected);
+    if (this.state.selected.length >= 3) {
+      var cards = this.state.board.filter((card) => { return this.state.selected.indexOf(card.id) !== -1 });
+      if (this.isValidSet(cards)) {
+        console.log("yep");
+        var nextCards = this.state.deck.slice(0, 3);
+        var nextBoard = this.state.board.map((card) => {
+          if (this.state.selected.indexOf(card.id) == -1) {
+            return card;
+          } else {
+            return nextCards.pop();
+          }
+        })
+        this.setState({
+          selected: [],
+          board: nextBoard,
+          deck: this.state.deck.slice(3)
+        })
+      } else {
+        console.log("nope");
+        this.setState({
+          selected: [],
+        });
+      }
+    }
+  }
+
+  isValidSet = (cards) => {
+    return _.all([
+      _.uniq(_.map(cards, "color")),
+      _.uniq(_.map(cards, "number")),
+      _.uniq(_.map(cards, "shape")),
+      _.uniq(_.map(cards, "fill"))
+    ], (attrs) => {
+      return attrs.length == 1 || attrs.length == 3;
+    })
   }
 }
 
