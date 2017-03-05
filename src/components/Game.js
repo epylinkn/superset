@@ -67,6 +67,11 @@ class Game extends Component {
   }
 
   handleClick = (id) => {
+    // Don't allow selecting same card
+    if (this.state.selected.indexOf(id) !== -1) {
+      return false;
+    }
+
     this.setState({
       selected: this.state.selected.concat(id)
     });

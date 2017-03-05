@@ -25,6 +25,7 @@ class Profile extends Component {
     const credentials = this.getActiveCredential();
     return (
       <div>
+        {/*
         <h1>Welcome to Reindex!</h1>
         <div>
           You are user {credentials.displayName}
@@ -38,7 +39,8 @@ class Profile extends Component {
             Logout
           </button>
         </div>
-
+        */}
+        
         <Game />
       </div>
     );
