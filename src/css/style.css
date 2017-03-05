@@ -56,8 +56,6 @@ footer.page-footer {
   margin: 0;
 }
 
-
-
 .card {
   text-align: center;
   padding: 20px;
@@ -76,6 +74,15 @@ footer.page-footer {
 }
 
 
+.card-1 {
+  padding-top: 100px;
+}
+.card-2 {
+  padding-top: 70px;
+}
+.card-3 {
+  padding-top: 40px;
+}
 
 .card i {
   display: block;

@@ -11,7 +11,7 @@ class Card extends Component {
   render() {
     return (
       <div className="col s3">
-        <div className={`card card-${ this.props.color } ${ this.props.selected ? "selected" : "" }`} onClick={this.handleClick}>
+        <div className={`card card-${ this.props.color } card-${ this.props.number } ${ this.props.selected ? "selected" : "" }`} onClick={this.handleClick}>
           {_.times(this.props.number, (i) =>
             <i key={i} className={`fa ${ this.iconFor(this.props.shape, this.props.fill) } fa-5x`}></i>
           )}
@@ -63,13 +63,3 @@ export default Relay.createContainer(Card, {
     // `
   }
 });
-//
-// color
-// number
-// shape
-// shading
-//
-//
-//
-// battery
-// star
