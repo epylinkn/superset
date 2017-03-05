@@ -36,7 +36,8 @@ class Game extends Component {
               color: color,
               number: number,
               shape: shape,
-              fill: fill
+              fill: fill,
+              rotation: _.sample([-2, -1, 0, 1, 2])
             })
           })
         })
@@ -79,7 +80,9 @@ class Game extends Component {
                 color={card.color}
                 number={card.number}
                 shape={card.shape}
-                fill={card.fill} />
+                fill={card.fill}
+                rotation={card.rotation}
+                />
             )}
           </div>
         </div>
