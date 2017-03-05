@@ -43,10 +43,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
+        loaders: [
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
-        ),
+          'css-loader'
+        ]
+      },
+
+      // font-awesome-webpack has weird versioned urls, e.g. ?v=1.2.3
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])$/,
+        loader: "file-loader"
+      },
+
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=build/fonts/[name].[ext]'
       },
 
       // auth0 lock
@@ -72,9 +87,4 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.css'],
   },
-
-  postcss: [
-    require('autoprefixer'),
-    require('postcss-nested'),
-  ],
 };
