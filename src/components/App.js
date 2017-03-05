@@ -5,6 +5,7 @@ import Relay from 'react-relay';
 import Reindex from '../Reindex';
 import Profile from './Profile';
 import Login from './Login';
+import Game from './Game';
 import ProfileRoute from '../routes/ProfileRoute';
 
 export default class App extends Component {
@@ -33,15 +34,15 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.isLoggedIn) {
+    if (true || this.state.isLoggedIn) {
       return (
         <Relay.RootContainer
-          Component={Profile}
+          Component={Game}
           route={new ProfileRoute}
           forceFetch={true}
           renderFetched={(data) => {
             return (
-              <Profile {...data} onLogout={this.handleLogout} />
+              <Game {...data} onLogout={this.handleLogout} />
             );
           }} />
       );
