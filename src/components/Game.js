@@ -51,7 +51,7 @@ class Game extends Component {
           <h1 style={{textAlign: "center"}}>{this.state.deck.length} cards remaining</h1>
         </div>
 
-        <div className="row">
+        <div className="row buttons">
           <a className="btn-floating btn-large waves-effect waves-light red"
               onClick={this.addCard.bind(this)}>
             <i className="fa fa-plus fa-3x"></i>
@@ -108,14 +108,22 @@ class Game extends Component {
       var cards = this.state.board.filter((card) => { return this.state.selected.indexOf(card.id) !== -1 });
       if (this.isValidSet(cards)) {
         console.log("yep");
-        var nextCards = this.state.deck.slice(0, 3);
+        var numCards = _.max([0, 3 - (this.state.board.length - 12)]);
+        var nextCards = this.state.deck.slice(0, numCards);
         var nextBoard = this.state.board.map((card) => {
           if (this.state.selected.indexOf(card.id) == -1) {
             return card;
           } else {
-            return nextCards.pop();
+            const nextCard = nextCards.pop();
+            if (nextCard) {
+              return nextCard;
+            } else {
+              return null;
+            }
           }
         })
+        var nextBoard = _.compact(nextBoard);
+
         this.setState({
           status: "correct"
         });
@@ -124,7 +132,7 @@ class Game extends Component {
           this.setState({
             selected: [],
             board: nextBoard,
-            deck: this.state.deck.slice(3),
+            deck: this.state.deck.slice(numCards),
             status: ""
           })
         }, 1000)
