@@ -52,7 +52,10 @@ class Game extends Component {
         </div>
 
         <div className="row">
-          <button onClick={this.addCard.bind(this)}>Add Card</button>
+          <a className="btn-floating btn-large waves-effect waves-light red"
+              onClick={this.addCard.bind(this)}>
+            <i className="fa fa-plus fa-3x"></i>
+          </a>
         </div>
 
         <div className="row">
