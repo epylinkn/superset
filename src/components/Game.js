@@ -52,6 +52,10 @@ class Game extends Component {
         </div>
 
         <div className="row">
+          <button onClick={this.addCard.bind(this)}>Add Card</button>
+        </div>
+
+        <div className="row">
           <div className={this.state.status}>
             {this.state.board.map((card, i) =>
               <Card key={i}
@@ -67,6 +71,15 @@ class Game extends Component {
         </div>
       </div>
     );
+  }
+
+  addCard = () => {
+    this.setState((prevState) => {
+      return {
+        deck: prevState.deck.slice(1),
+        board: prevState.board.concat(prevState.deck[0])
+      }
+    })
   }
 
   handleClick = (id) => {
