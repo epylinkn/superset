@@ -12,7 +12,9 @@ class Game extends Component {
       deck: _.takeRight(deck, 81-12),
       board: _.take(deck, 12),
       selected: [],
-      status: ''
+      status: '',
+      wrong_count: 0,
+      correct_count: 0
     }
 
     console.log("BOARD", this.state.board);
@@ -52,10 +54,16 @@ class Game extends Component {
         </div>
 
         <div className="row buttons">
-          <a className="btn-floating btn-large waves-effect waves-light red"
-              onClick={this.addCard.bind(this)}>
-            <i className="fa fa-plus fa-3x"></i>
-          </a>
+          <div className="tools tools-wrong-sets">{this.state.wrong_count}</div>
+
+          <div className="tools tools-add-card">
+            <a className="btn-floating btn-large waves-effect waves-light red"
+                onClick={this.addCard.bind(this)}>
+              <i className="fa fa-plus fa-3x"></i>
+            </a>
+          </div>
+
+          <div className="tools tools-correct-sets">{this.state.correct_count}</div>
         </div>
 
         <div className="row">
@@ -125,7 +133,8 @@ class Game extends Component {
         var nextBoard = _.compact(nextBoard);
 
         this.setState({
-          status: "correct"
+          status: "correct",
+          correct_count: this.state.correct_count + 1
         });
 
         setTimeout(() => {
@@ -138,7 +147,8 @@ class Game extends Component {
         }, 1000)
       } else {
         this.setState({
-          status: "wrong"
+          status: "wrong",
+          wrong_count: this.state.wrong_count + 1
         });
 
         setTimeout(() => {
