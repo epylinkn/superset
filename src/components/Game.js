@@ -51,6 +51,9 @@ class Game extends Component {
       <div className="container">
         <div>
           <h1 style={{textAlign: "center"}}>{this.state.deck.length} cards remaining</h1>
+          {this.state.wrong_count > 2 &&
+            <h5 style={{textAlign: "center"}}>UGH, GET BETTER KENNETH...</h5>
+          }
         </div>
 
         <div className="row buttons">
